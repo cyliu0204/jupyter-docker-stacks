@@ -4,7 +4,7 @@
 # Ubuntu 18.04 (bionic)
 # https://hub.docker.com/_/ubuntu/?tab=tags&name=bionic
 # OS/ARCH: linux/amd64
-ARG ROOT_CONTAINER=ubuntu:bionic-20200403@sha256:b58746c8a89938b8c9f5b77de3b8cf1fe78210c696ab03a1442e235eea65d84f
+ARG ROOT_CONTAINER=nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
 ARG BASE_CONTAINER=$ROOT_CONTAINER
 FROM $BASE_CONTAINER
 
@@ -111,8 +111,8 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 # files across image layers when the permissions change
 RUN conda install --quiet --yes \
     'notebook=6.0.3' \
-    'jupyterhub=1.1.0' \
-    'jupyterlab=2.1.3' && \
+    'jupyterhub=1.0.0' \
+    'jupyterlab=2.0.2' && \
     conda clean --all -f -y && \
     npm cache clean --force && \
     jupyter notebook --generate-config && \
